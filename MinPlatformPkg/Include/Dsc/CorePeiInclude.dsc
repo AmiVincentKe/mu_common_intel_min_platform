@@ -22,9 +22,20 @@
 
   UefiCpuPkg/CpuIoPei/CpuIoPei.inf
 
-  MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf
+  # MCU_MIN_PLATFORM_CAT2_005 [BEGIN]
+  MdeModulePkg/Universal/FaultTolerantWritePei/FaultTolerantWritePei.inf {
+    <PcdsFixedAtBuild>
+      gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase64|0
+      gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase64|0
+  }
 
-  MdeModulePkg/Universal/Variable/Pei/VariablePei.inf
+  MdeModulePkg/Universal/Variable/Pei/VariablePei.inf {
+    <PcdsFixedAtBuild>
+      gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageVariableBase64|0
+      gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwWorkingBase64|0
+      gEfiMdeModulePkgTokenSpaceGuid.PcdFlashNvStorageFtwSpareBase64|0
+  }
+  # MCU_MIN_PLATFORM_CAT2_005 [END]
 
   MdeModulePkg/Universal/PcatSingleSegmentPciCfg2Pei/PcatSingleSegmentPciCfg2Pei.inf
 
@@ -32,7 +43,7 @@
     <LibraryClasses>
       NULL|MdeModulePkg/Library/LzmaCustomDecompressLib/LzmaCustomDecompressLib.inf
   }
-  
+
 !if gMinPlatformPkgTokenSpaceGuid.PcdTpm2Enable == TRUE
   SecurityPkg/Tcg/Tcg2Config/Tcg2ConfigPei.inf
   SecurityPkg/Tcg/Tcg2Pei/Tcg2Pei.inf {
